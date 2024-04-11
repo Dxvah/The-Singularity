@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float velocidad = 10, velRotacion = 5;
-    Rigidbody fisicas;
-    public Transform pTransform;
+    public float speed = 5f;
+    public float mouseSensitivity = 2f;
+    public Transform target;
+    Rigidbody physics;
+
+    private Vector3 targetDirection;
     void Start()
     {
-        fisicas = GetComponent<Rigidbody>();
+        physics = GetComponent<Rigidbody>();
     }
 
 
@@ -17,25 +20,21 @@ public class Player : MonoBehaviour
     {
 
     }
+
     private void FixedUpdate()                                                    //Movimiento del jugador
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            fisicas.velocity = transform.forward * velocidad;
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * speed * Time.deltaTime;
+        transform.Translate(movement);
 
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            fisicas.velocity = -transform.forward * velocidad;
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        targetDirection += new Vector3(-mouseY, mouseX, 0f);
+        targetDirection.y = Mathf.Clamp(targetDirection.y, -80f, 80f); 
+        target.rotation = Quaternion.Euler(targetDirection);
 
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            pTransform.Rotate(0, -velRotacion, 0);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            pTransform.Rotate(0, velRotacion,  0);
-        }
+        
+        target.position = transform.position;
     }
 }
