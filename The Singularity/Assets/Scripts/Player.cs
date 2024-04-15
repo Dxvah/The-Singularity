@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         physics = GetComponent<Rigidbody>();
+        physics.freezeRotation = true;
     }
 
 
@@ -24,15 +25,9 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()                                                    //Movimiento del jugador
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * speed * Time.deltaTime;
-        transform.Translate(movement);
-
-        
-       
-
-        
-        target.position = transform.position;
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
+        Vector3 movement = target.forward * verticalInput + target.right * horizontalInput;
+        physics.AddForce(movement.normalized * speed, ForceMode.Force);    
     }
 }
