@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 5f;
+    public float speed = 100f;
     public float mouseSensitivity = 2f;
-    float horizontalInput;
-    float verticalInput;
+    public float horizontalInput;
+    public float verticalInput;
     public Transform target;
     Rigidbody physics;
+    PlayerInput playerInput;
     
 
     private Vector3 targetDirection;
@@ -17,6 +19,7 @@ public class Player : MonoBehaviour
     {
         physics = GetComponent<Rigidbody>();
         physics.freezeRotation = true;
+        playerInput = GetComponent<PlayerInput>();
     }
 
 
@@ -29,9 +32,11 @@ public class Player : MonoBehaviour
     private void FixedUpdate()                                                    //Movimiento del jugador
     {
 
+        Debug.Log(target.forward);
+        Vector3 movement = target.forward.normalized * verticalInput + target.right.normalized * horizontalInput;
         
-        Vector3 movement = target.forward * verticalInput + target.right * horizontalInput;
-        
-        physics.AddForce(movement.normalized * speed, ForceMode.Force);    
+        physics.AddForce(movement.normalized * speed, ForceMode.Force);
+
+        transform.Rotate(new Vector3(0,/*Distancia en angulos entre la rotación de la camara y la mia*/,0));
     }
 }
