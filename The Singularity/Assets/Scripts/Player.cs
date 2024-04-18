@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public float speed = 5f;
     public float mouseSensitivity = 2f;
+    float horizontalInput;
+    float verticalInput;
     public Transform target;
     Rigidbody physics;
     
@@ -20,14 +22,16 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
     }
 
     private void FixedUpdate()                                                    //Movimiento del jugador
     {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
+
+        
         Vector3 movement = target.forward * verticalInput + target.right * horizontalInput;
+        
         physics.AddForce(movement.normalized * speed, ForceMode.Force);    
     }
 }
