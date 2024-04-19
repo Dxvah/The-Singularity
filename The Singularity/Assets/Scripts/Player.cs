@@ -32,11 +32,15 @@ public class Player : MonoBehaviour
     private void FixedUpdate()                                                    //Movimiento del jugador
     {
 
-        Debug.Log(target.forward);
-        Vector3 movement = target.forward.normalized * verticalInput + target.right.normalized * horizontalInput;
+        
+        Vector3 camaraFwd = target.forward;
+        Vector3 camaraRight = target.right;
+        camaraFwd.y = 0f;
+        camaraRight.y = 0f;
+        Vector3 movement = camaraFwd.normalized * verticalInput + camaraRight.normalized * horizontalInput;
         
         physics.AddForce(movement.normalized * speed, ForceMode.Force);
 
-        transform.Rotate(new Vector3(0,/*Distancia en angulos entre la rotación de la camara y la mia*/,0));
+        
     }
 }
