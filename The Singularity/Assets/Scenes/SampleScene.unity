@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damping: {x: 0.1, y: 0.5, z: 0.3}
-  ShoulderOffset: {x: 0, y: 0.72, z: 0}
+  ShoulderOffset: {x: 0, y: 0.72, z: 2.15}
   VerticalArmLength: 0.4
   CameraSide: 1
   CameraDistance: 2
@@ -909,7 +909,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.115573786, y: 0.72355103, z: -11.142973}
+  m_LocalPosition: {x: 0.10958194, y: 0.72355103, z: -8.908779}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1473,7 +1473,7 @@ Transform:
   m_GameObject: {fileID: 1862143647}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0015149801, y: -0.0013934458, z: -0.000002111037, w: 0.99999785}
-  m_LocalPosition: {x: 0.11, y: -0.402507, z: -9.144202}
+  m_LocalPosition: {x: 0.11, y: -0.402507, z: -9.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1493,6 +1493,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   mouseSensitivity: 2
+  horizontalInput: 0
+  verticalInput: 0
   target: {fileID: 963194228}
 --- !u!65 &1862143650
 BoxCollider:
@@ -1757,7 +1759,7 @@ Transform:
   m_GameObject: {fileID: 2004935918}
   serializedVersion: 2
   m_LocalRotation: {x: -0.035271514, y: 0.024815205, z: 0.0016924794, w: -0.9990682}
-  m_LocalPosition: {x: 0.115573786, y: 0.72355103, z: -11.142973}
+  m_LocalPosition: {x: 0.10958194, y: 0.72355103, z: -8.908779}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
