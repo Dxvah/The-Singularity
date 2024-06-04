@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Sonido : MonoBehaviour
 {
     public Slider volumen;
+    public AudioSource buttonSound;
     void Start()
     {
         if (PlayerPrefs.HasKey("musicvolumen"))
@@ -31,5 +32,10 @@ public class Sonido : MonoBehaviour
     private void Save()
     {
         PlayerPrefs.SetFloat("musicvolumen", volumen.value);
+    }
+
+    public void OnClick()
+    {
+        buttonSound.Play();
     }
 }
