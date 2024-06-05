@@ -12,9 +12,11 @@ public class Player : MonoBehaviour
     public Transform target;
     Rigidbody physics;
     PlayerInput playerInput;
-    
 
+    public AudioSource steps;
     private Vector3 targetDirection;
+    private bool isMoving = false;
+
     void Start()
     {
         physics = GetComponent<Rigidbody>();
@@ -22,25 +24,34 @@ public class Player : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
     }
 
-
     void Update()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-    }
-
-    private void FixedUpdate()                                                    //Movimiento del jugador
-    {
 
         
+        bool wasMoving = isMoving;
+        isMoving = (horizontalInput != 0 || verticalInput != 0);
+
+        
+        if (isMoving && !wasMoving)
+        {
+            steps.Play();
+        }
+        else if (!isMoving && wasMoving)
+        {
+            steps.Pause();
+        }
+    }
+
+    private void FixedUpdate()
+    {
         Vector3 camaraFwd = target.forward;
         Vector3 camaraRight = target.right;
         camaraFwd.y = 0f;
         camaraRight.y = 0f;
         Vector3 movement = camaraFwd.normalized * verticalInput + camaraRight.normalized * horizontalInput;
-        
         physics.AddForce(movement.normalized * speed, ForceMode.Force);
-
-        
     }
 }
+
