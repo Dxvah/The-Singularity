@@ -3003,7 +3003,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 40b373c7d9a8bde4b92235a2ec489c26, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.016
+  m_Volume: 0.008
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3356,7 +3356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 31f3c4a5e57db924d8fc858e2dbd6303, type: 3}
       propertyPath: m_Name
-      value: Vintage Radio_LOD0
+      value: Radio
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3408,10 +3408,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 123a32516868b9b4882299c398c91642, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1f56ecb023d5a634480fc3de18e3378f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 0.5
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -3513,8 +3513,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.7525553
-  m_Center: {x: 0.62866825, y: 0.08326424, z: -0.0034626452}
+  m_Radius: 0.8715523
+  m_Center: {x: 0.390182, y: 0.08326424, z: 0.029903505}
 --- !u!1 &1631998433
 GameObject:
   m_ObjectHideFlags: 0
@@ -4414,7 +4414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1981896248
 MonoBehaviour:
   m_ObjectHideFlags: 0
