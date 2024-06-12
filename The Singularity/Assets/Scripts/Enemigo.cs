@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Enemigo : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Enemigo : MonoBehaviour
     public Collider enemyCol;
     public Animator enemyAnim;
     private bool isBeingWatched = false;
+    public AudioSource audioDeath;
+    public Canvas canvaDeath;
 
     void Start()
     {
@@ -36,11 +39,14 @@ public class Enemigo : MonoBehaviour
 
     void PauseGame()
     {
+        audioDeath.Play();
+        
         Time.timeScale = 0;
     }
 
     void RestartGame()
     {
+        canvaDeath.enabled = true;
         Time.timeScale = 1;
     }
 
@@ -55,7 +61,7 @@ public class Enemigo : MonoBehaviour
         {
             enemyAnim.enabled = true;
         }
-        Debug.Log("El enemigo está siendo observado: " + isWatched);
+        //Debug.Log("El enemigo está siendo observado: " + isWatched);
     }
 }
 
