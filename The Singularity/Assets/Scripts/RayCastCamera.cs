@@ -9,6 +9,7 @@ public class RayCastCamera : MonoBehaviour
     public Camera cam;
     public float raycastDistance = 100f;
     public LayerMask enemyLayerMask;
+    [SerializeField]
     private Enemigo enemigo;
 
     void Start()
@@ -27,29 +28,40 @@ public class RayCastCamera : MonoBehaviour
 
     void Update()
     {
-        if (mira == null || cam == null || enemigo == null)
+        if (mira == null || cam == null)
         {
             return;
         }
 
         mira.color = new Color(mira.color.r, mira.color.g, mira.color.b, 0.4f);
 
-        Ray ray = cam.ScreenPointToRay(cam.transform.position);
+        //Ray ray = cam.ScreenPointToRay(cam.transform.position);
+        //Ray ray = new Ray(mira.transform.position, mira.transform.forward);
+
+        Vector3 rayOrigin = new Vector3(0.5f, 0.5f, 0f); // center of the screen
+
+        // actual Ray
+        Ray ray = Camera.main.ViewportPointToRay(rayOrigin);
         RaycastHit hit;
         
         if (Physics.Raycast(ray, out hit))
         {
             mira.color = new Color(mira.color.r, mira.color.g, mira.color.b, 1f);
-            Debug.Log("Elemento encontrado:");
-Debug.Log(hit);
-            Enemigo enemyCol = hit.collider.GetComponent<Enemigo>();
-            if (enemyCol != null)
+            Debug.Log(hit.collider.gameObject.name);
+
+            if (LayerMask.LayerToName(hit.collider.gameObject.layer) == "enemy")
             {
-                enemyCol.SetBeingWatched(true);
+                // enemyAwake = true
+                enemigo = hit.collider.gameObject.GetComponent<Enemigo>();
+                enemigo.SetBeingWatched(true);
             }
             else
             {
-                enemyCol.SetBeingWatched(false);
+                     if(enemigo != null)
+                        {
+                            Debug.Log("Muevete");
+                            enemigo.SetBeingWatched(false);
+                        }
             }
         }
         
@@ -57,7 +69,13 @@ Debug.Log(hit);
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawRay(cam.transform.position, transform.forward);
+        Vector3 rayOrigin = new Vector3(0.5f, 0.5f, 0f); // center of the screen
+        float rayLength = 500f;
+
+        // actual Ray
+        Ray ray = Camera.main.ViewportPointToRay(rayOrigin);
+
+        Gizmos.DrawRay(ray);
     }
 }
 

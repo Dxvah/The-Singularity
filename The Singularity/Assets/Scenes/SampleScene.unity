@@ -848,7 +848,7 @@ Transform:
   m_GameObject: {fileID: 361848431}
   serializedVersion: 2
   m_LocalRotation: {x: 0.723948, y: -0, z: -0, w: 0.6898546}
-  m_LocalPosition: {x: -3.9, y: 25.5, z: -66.53}
+  m_LocalPosition: {x: -3.9, y: 25.5, z: -65.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -867,8 +867,8 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.990566, g: 0.9712059, b: 0.6681648, a: 1}
   m_Intensity: 1.7
-  m_Range: 10.67
-  m_SpotAngle: 91.2
+  m_Range: 6.58
+  m_SpotAngle: 75.7
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
@@ -3354,6 +3354,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 31f3c4a5e57db924d8fc858e2dbd6303, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f649b2a26fc9a4a429ab62ff96385aac, type: 2}
     - target: {fileID: 919132149155446097, guid: 31f3c4a5e57db924d8fc858e2dbd6303, type: 3}
       propertyPath: m_Name
       value: Radio
@@ -3658,6 +3662,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 6498cb9ceab6daa45b5dae8121d0ea8b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 505ed65e3c7da174c96256675e82eda1, type: 2}
     - target: {fileID: 919132149155446097, guid: 6498cb9ceab6daa45b5dae8121d0ea8b, type: 3}
       propertyPath: m_Name
       value: Stool
@@ -4196,6 +4204,7 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  enemigo: {fileID: 0}
 --- !u!82 &1862143654
 AudioSource:
   m_ObjectHideFlags: 0

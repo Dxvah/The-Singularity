@@ -40,26 +40,30 @@ public class Enemigo : MonoBehaviour
     void PauseGame()
     {
         audioDeath.Play();
-        
+        canvaDeath.enabled = true;
         Time.timeScale = 0;
     }
 
     void RestartGame()
     {
-        canvaDeath.enabled = true;
+        canvaDeath.enabled = false;
         Time.timeScale = 1;
     }
 
     public void SetBeingWatched(bool isWatched)
     {
         isBeingWatched = isWatched;
+        //enemyAnim.enabled = isBeingWatched;
         if (isWatched)
         {
             enemyAnim.enabled = false;
+            enemy.isStopped = true;
         }
         else
         {
             enemyAnim.enabled = true;
+            enemy.isStopped = false;
+
         }
         //Debug.Log("El enemigo está siendo observado: " + isWatched);
     }
