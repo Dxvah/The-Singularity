@@ -14,6 +14,8 @@ public class RayCastCamera : MonoBehaviour
     private Enemigo enemigo;
 
     public bool hasCogidoElObjeto = false;
+    public GameObject boca;  // Prefab del objeto a instanciar
+    public Transform puntodeInstancia;  // Punto donde se instanciará el objeto
 
     void Start()
     {
@@ -25,6 +27,16 @@ public class RayCastCamera : MonoBehaviour
         if (mira == null)
         {
             Debug.LogError("No se ha asignado la imagen de la mira.");
+        }
+
+        if (boca == null)
+        {
+            Debug.LogError("No se ha asignado el objeto para instanciar.");
+        }
+
+        if (puntodeInstancia == null)
+        {
+            Debug.LogError("No se ha asignado el punto de instanciación.");
         }
     }
 
@@ -43,8 +55,6 @@ public class RayCastCamera : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, raycastDistance))
         {
-           
-
             if (LayerMask.LayerToName(hit.collider.gameObject.layer) == "enemy")
             {
                 mira.color = new Color(mira.color.r, mira.color.g, mira.color.b, 1f);
@@ -66,7 +76,16 @@ public class RayCastCamera : MonoBehaviour
                     mira.color = new Color(mira.color.r, mira.color.g, mira.color.b, 1f);
                     hasCogidoElObjeto = true;
                     Debug.Log("Objeto interactuable cogido!");
-                    Destroy(hit.collider.gameObject); 
+
+                    
+                    if (hit.collider.gameObject.name == "esposas")
+                    {
+                       
+                        Instantiate(boca, puntodeInstancia.position, puntodeInstancia.rotation);
+                        Debug.Log("Objeto instanciado en el punto especificado!");
+                    }
+
+                    Destroy(hit.collider.gameObject);
                 }
             }
         }
@@ -82,9 +101,3 @@ public class RayCastCamera : MonoBehaviour
         Gizmos.DrawRay(ray);
     }
 }
-
-
-
-
-
-
