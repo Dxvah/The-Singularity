@@ -7,15 +7,19 @@ public class RayCastCamera : MonoBehaviour
 {
     public Image mira;
     public Camera cam;
-    public float raycastDistance = 100f;
+    public float raycastDistance = 500f;
     public LayerMask enemyLayerMask;
     public LayerMask interactuableLayerMask;
     [SerializeField]
     private Enemigo enemigo;
 
     public bool hasCogidoElObjeto = false;
-    public GameObject boca;  // Prefab del objeto a instanciar
-    public Transform puntodeInstancia;  // Punto donde se instanciará el objeto
+    public GameObject boca;  
+    public Transform puntodeInstancia; 
+
+    private int totalBurgers = 13;
+    private int burgersCollected = 0;
+    public GameObject canvas; 
 
     void Start()
     {
@@ -38,6 +42,15 @@ public class RayCastCamera : MonoBehaviour
         {
             Debug.LogError("No se ha asignado el punto de instanciación.");
         }
+
+        if (canvas == null)
+        {
+            Debug.LogError("No se ha asignado el canvas.");
+        }
+        else
+        {
+            canvas.SetActive(false);
+        }
     }
 
     void Update()
@@ -49,7 +62,7 @@ public class RayCastCamera : MonoBehaviour
 
         mira.color = new Color(mira.color.r, mira.color.g, mira.color.b, 0.4f);
 
-        Vector3 rayOrigin = new Vector3(0.5f, 0.5f, 0f); // center of the screen
+        Vector3 rayOrigin = new Vector3(0.5f, 0.5f, 0f);
         Ray ray = Camera.main.ViewportPointToRay(rayOrigin);
         RaycastHit hit;
 
@@ -77,14 +90,24 @@ public class RayCastCamera : MonoBehaviour
                     hasCogidoElObjeto = true;
                     Debug.Log("Objeto interactuable cogido!");
 
-                    
                     if (hit.collider.gameObject.name == "esposas")
                     {
-                       
                         Instantiate(boca, puntodeInstancia.position, puntodeInstancia.rotation);
                         Debug.Log("Objeto instanciado en el punto especificado!");
                     }
+                    if (hit.collider.gameObject.CompareTag("burger"))
+                    {
+                        burgersCollected++;
+                        Debug.Log("Hamburguesa recogida. Total recogidas: " + burgersCollected);
 
+                        if (burgersCollected >= totalBurgers)
+                        {
+                            canvas.SetActive(true);
+                            Debug.Log("Todas las hamburguesas han sido recogidas!");
+                        }
+
+                       
+                    }
                     Destroy(hit.collider.gameObject);
                 }
             }

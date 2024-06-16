@@ -804,6 +804,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8cee5ee25b5922e4d8ea47c6a97e7159, type: 3}
+      propertyPath: m_TagString
+      value: enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 989288059420015381, guid: 8cee5ee25b5922e4d8ea47c6a97e7159, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -1527,7 +1531,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2457599219341061394}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1372625422
   m_Radius: 0.5
   m_Speed: 3
   m_Acceleration: 8
@@ -1558,7 +1562,6 @@ MonoBehaviour:
   enemyCol: {fileID: -1756878311165755609}
   enemyAnim: {fileID: 9201092632922844626}
   audioDeath: {fileID: 2025613372450190950}
-  canvaDeath: {fileID: 0}
 --- !u!65 &-1756878311165755609
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -12,8 +12,7 @@ public class Enemigo : MonoBehaviour
     public Animator enemyAnim;
     private bool isBeingWatched = false;
     public AudioSource audioDeath;
-    public Canvas canvaDeath;
-
+    
     void Start()
     {
         enemy = GetComponent<NavMeshAgent>();
@@ -29,26 +28,7 @@ public class Enemigo : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            PauseGame();
-        }
-    }
-
-    void PauseGame()
-    {
-        audioDeath.Play();
-        canvaDeath.enabled = true;
-        Time.timeScale = 0;
-    }
-
-    void RestartGame()
-    {
-        canvaDeath.enabled = false;
-        Time.timeScale = 1;
-    }
+   
 
     public void SetBeingWatched(bool isWatched)
     {
